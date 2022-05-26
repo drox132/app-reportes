@@ -1,5 +1,6 @@
 package com.fran.Inspector.controller;
 
+import com.fran.Inspector.dto.inspector.InspectorRequestDto;
 import com.fran.Inspector.model.Inspector;
 import com.fran.Inspector.service.InspectorService;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class InspectorController {
 
 
     @PostMapping(value = "/addnewinspector")
-    public void addNewInspector(@RequestBody Inspector addNewInspector) {
+    public void addNewInspector(@RequestBody InspectorRequestDto addNewInspector) {
         inspectorService.addNewInspector(addNewInspector);
     }
 

@@ -2,6 +2,8 @@ package com.fran.Inspector.service;
 
 
 
+import com.fran.Inspector.dto.inspector.InspectorRequestDto;
+import com.fran.Inspector.exception.ValidateInspectorException;
 import com.fran.Inspector.model.Inspector;
 import com.fran.Inspector.repository.InspectorRepository;
 import org.springframework.stereotype.Service;
@@ -28,11 +30,22 @@ public class InspectorServiceImplementation implements InspectorService{
     }
 
     @Override
-    public void addNewInspector(Inspector addNewInspector) {
-            inspectorRepository.addNewInspector(
-                    addNewInspector.getName(),
-                    addNewInspector.getCel(),
-                    addNewInspector.getEmail());
+    public void addNewInspector(InspectorRequestDto addNewInspector) {
+
+        
+        try {
+            if (!addNewInspector.validateFields()){
+                throw new ValidateInspectorException("Attribute of Inspector is Empty");
+            }
+            Inspector inspector= new Inspector();
+            inspector.setName(addNewInspector.getName());
+            inspector.setCel(addNewInspector.getCel());
+            inspector.setEmail(addNewInspector.getEmail());
+            inspectorRepository.save(inspector);
+
+        }catch (ValidateInspectorException exception){
+            System.out.println(exception);
+        }
     }
 
     @Override
