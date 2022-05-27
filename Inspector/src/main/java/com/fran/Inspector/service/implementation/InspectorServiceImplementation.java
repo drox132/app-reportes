@@ -1,4 +1,4 @@
-package com.fran.Inspector.service;
+package com.fran.Inspector.service.implementation;
 
 
 
@@ -6,12 +6,13 @@ import com.fran.Inspector.dto.inspector.InspectorRequestDto;
 import com.fran.Inspector.exception.ValidateInspectorException;
 import com.fran.Inspector.model.Inspector;
 import com.fran.Inspector.repository.InspectorRepository;
+import com.fran.Inspector.service.InspectorService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class InspectorServiceImplementation implements InspectorService{
+public class InspectorServiceImplementation implements InspectorService {
 
     private final InspectorRepository inspectorRepository;
 
