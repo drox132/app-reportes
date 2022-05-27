@@ -6,11 +6,13 @@ import com.fran.Inspector.exception.ValidateInspectorException;
 import com.fran.Inspector.model.Consortium;
 import com.fran.Inspector.repository.ConsortiumRepository;
 import com.fran.Inspector.service.ConsortiumService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class ConsortiumServiceImplementation implements ConsortiumService {
 
@@ -22,8 +24,19 @@ public class ConsortiumServiceImplementation implements ConsortiumService {
     }
 
     @Override
-    public Optional<Consortium> getConsortiumById(Integer id) {
-        return consortiumRepository.findById(id);
+    public Consortium getConsortiumById(Integer id) {
+      log.info("Iniciando el metodo getConsortiumById");
+        Optional<Consortium> byId = consortiumRepository.findById(id);
+        log.info("se procede a convertir el Optional consortium a un Consortium");
+        Consortium consortium = byId.orElseThrow(() -> new ValidateConsortiumException("malo"));
+
+        //SE PUEDE HACER EN UNA SOLA LINEA
+        /*Consortium consortium= consortiumRepository.findById(id)
+         .orElseThrow(() -> new ValidateConsortiumException("Consorcio con datos incorrectos o vacios"));
+
+         EXISTEN OTROS METODOS DEL OPTIONAL QUE DETERMINAN SI EL DATO isEmpty o ifPresent POR AVERIGUAR COMO FUNCIONAN
+         */
+        return consortium;
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ConsortiumService {
 
-    Optional<Consortium> getConsortiumById (Integer id);
+    Consortium getConsortiumById (Integer id);
     void addNewConsortiumDto(ConsortiumRequestDto addNewConsortiumDto);
 
 }

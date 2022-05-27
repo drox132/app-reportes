@@ -20,7 +20,7 @@ public class ConsortiumController {
     }
 
     @GetMapping(value = "/getby/{id}")
-    public Optional<Consortium> getConsortiumById(@PathVariable Integer id){
+    public Consortium getConsortiumById(@PathVariable Integer id){
         return consortiumService.getConsortiumById(id);
     }
 
