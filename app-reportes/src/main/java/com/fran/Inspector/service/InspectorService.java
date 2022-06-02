@@ -9,6 +9,6 @@ import java.util.List;
 public interface InspectorService {
     List<Inspector> getAllInspector();
     Inspector getInspectorById(Integer id);
-    void addNewInspector (InspectorRequestDto addNewInspector);
+    Inspector addNewInspector (InspectorRequestDto addNewInspector);
     void updateInspector (Inspector updateInspector);
 }
